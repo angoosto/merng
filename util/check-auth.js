@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { AuthenitcationError } = require("apollo-server");
+const { AuthenticationError } = require("apollo-server");
 
 const { SECRET_KEY } = require("../config");
 
@@ -12,10 +12,10 @@ module.exports = (context) => {
         const user = jwt.verify(token, SECRET_KEY);
         return user;
       } catch (err) {
-        throw new AuthenitcationError("Invalid token");
+        throw new AuthenticationError("Invalid token");
       }
     }
     throw new Error("Authentication token must be 'Bearer [token]'");
   }
-  throw new Error("Authentication header must be provided");
+  throw new Error("Authorisation header must be provided");
 };
